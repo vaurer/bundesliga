@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="JS/script.js" defer></script>
-    <link rel="stylesheet" href="./CSS/reset.css" />
+    <!-- <link rel="stylesheet" href="./CSS/reset.css" /> -->
+    <link rel="stylesheet" href="./CSS/simple-grid.css">
     <link rel="stylesheet" href="./CSS/style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;1,400;1,700&display=swap" rel="stylesheet"/>
   </head>
   <body>
-<ul id="teams">
+    <div class="wrapper">
+      <div class="header">
+        <button id="showTeams" onclick="showTeams()">Teams</button>
+        <button id="hideTeams" onclick="hideTeams()">hideTeams</button>
+      </div>
 
-</ul>
+      <div id="teams" style="visibility :hidden">
+    
+      </div>
 
+    </div>
   </body>
 </html>

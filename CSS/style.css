@@ -1,0 +1,67 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+.header {
+    padding: 25px;
+    display: flex;
+    justify-content: left;
+    background-color: #eee;
+}
+
+button {
+    padding: 20px;
+    margin: 10px;
+    border-style: none;
+    background-color: black;
+    color: white;
+    width: 150px;
+
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(82, 66, 66);
+}
+
+.content{
+    padding: 15px;
+}
+
+.content li {
+    background-color: brown;
+    padding: 15px;
+    margin-bottom: 1px;
+    color: white;
+    text-justify: newspaper;
+}
+
+.content li:hover{
+    cursor: pointer;
+    background-color: rgb(126, 19, 19);
+}
+
+table {
+    width:100%;
+  }
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 10px;
+    text-justify: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    font-style: italic;
+  }
+#teams tr:nth-child(even) {
+  background-color: #eee;
+}
+#teams tr:nth-child(odd) {
+ background-color: #fff;
+}
+#teams th {
+  background-color: black;
+  color: white;
+}
