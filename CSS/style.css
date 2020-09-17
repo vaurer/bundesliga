@@ -65,3 +65,17 @@ table {
   background-color: black;
   color: white;
 }
+
+ol li { 
+  border-right: 1px  solid black; 
+  padding: 0 .5em; 
+  padding: 10px;
+  text-justify: auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: x-large;
+  font-style: italic;
+  border-right:
+}
+
+  ol li:last-child { border: 0; }
