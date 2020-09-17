@@ -1,5 +1,5 @@
 let urlTeams = "https://api.football-data.org/v2/competitions/2002/teams";
-let urlStandings = "http://api.football-data.org/v2/competitions/2002/standings?standingType=TOTAL";
+let urlStandings = "https://api.football-data.org/v2/competitions/2002/standings?standingType=TOTAL";
 //let urlTeam = "https://api.football-data.org/v2/teams/721/"
 
 // fetch(urlBundesliga,{
