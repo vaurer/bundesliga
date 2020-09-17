@@ -13,14 +13,25 @@
   <body>
     <div class="wrapper">
       <div class="header">
-        <button id="showTeams" onclick="showTeams()">Teams</button>
-        <button id="hideTeams" onclick="hideTeams()">hideTeams</button>
+        <button id="showTeams" onclick="hideFirstView(), showTeams(), hideStandings()">Teams</button>
+        <button id="hideTeams" onclick="hideFirstView(), hideTeams(), showStandings()">Standings</button>
       </div>
 
-      <div id="teams" style="visibility :hidden">
-    
+      <div id="teams" style="display :none"></div>
+      <div id="standings" style="display :none"></div>
+        <div class="container" id="fistView" style="display :flex">
+          <div class="row">
+            <div class="col-3">
+              <!-- This content will take up 3/12 (or 1/4) of the container -->
+            </div>
+            <div class="col-3">
+              <h4>Willkommen auf die deutsche Bundesliga Übersichtseite</h4>
+            </div>
+            <div class="col-6">
+              <!-- This content will take up 6/12 (or 1/2) of the container -->
+            </div>
+          </div>
       </div>
-
     </div>
   </body>
 </html>
