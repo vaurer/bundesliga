@@ -29,7 +29,7 @@ fetch(urlTeams, {
       clubLinks.push(element.id)
        temp += "<tr><td><img src='"+element.crestUrl+"' onclick='hideTeams(), showClub("+element.id+")' style='width:80px'/></a></td><td>"+element.name+"</td></tr>"
     });
-    let html="<table><caption></caption>"+temp+"</table>";
+    let html="<table><caption></caption><tr><th>Crest</th><th>Club</th>"+temp+"</table>";
     document.getElementById("teams").innerHTML = html;
     console.log(html)
 for(a=0;a<clubLinks.length;a++){
@@ -96,9 +96,11 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
         let htmlSquad="";
     
         data.squad.forEach(element => {
-          htmlSquad += "<li>"+element.name+" " +element.role+" " +element.position+"</li>"
+          let place=1;
+          htmlSquad += "<tr><td>"+element.name+"</td><td>"+element.role+"</td><td>"+element.position+"</td></tr>"
+          //htmlSquad += "<li>"+element.name+" " +element.role+" " +element.position+"</li>"
         });
-        let temp3="<ol>"+htmlSquad+"</ol>";
+        let temp3="<table><caption></caption><tr><th>Name</th><th>Role</th><th>Position</th></tr>"+htmlSquad+"</table>";
         document.getElementById("club").innerHTML = temp3;
         console.log(htmlSquad)
     });
