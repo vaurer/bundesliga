@@ -1,17 +1,7 @@
 let urlTeams = "https://api.football-data.org/v2/competitions/2002/teams";
 let urlStandings = "https://api.football-data.org/v2/competitions/2002/standings?standingType=TOTAL";
-//let urlTeam = "https://api.football-data.org/v2/teams/721/"
 let clubLinks =[];
 
-// fetch(urlBundesliga,{
-//   method: "GET",
-//   headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}  
-// })
-// .then(response => response.json())
-// .then(function (data){
-//   let temp3 ="";
-
-// });
 
 fetch(urlTeams, {
     method: "GET",
@@ -23,9 +13,7 @@ fetch(urlTeams, {
   console.log(data)
     let temp="";
 
-    data.teams.forEach(element => {https://api.football-data.org/v2/teams/721/
-       //html += "<li><img src='"+element.crestUrl+"'/>"+element.name+"</li>"
-      // clubLinks += "https://api.football-data.org/v2/teams/"+element.id+"/"
+    data.teams.forEach(element => {
       clubLinks.push(element.id)
        temp += "<tr><td><img src='"+element.crestUrl+"' onclick='hideTeams(), showClub("+element.id+")' style='width:80px'/></a></td><td>"+element.name+"</td></tr>"
     });
@@ -78,11 +66,9 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
   function showFirstView() {
     document.getElementById("fistView").style.display = "flex"; 
   }
-
   function hideClub() {
     document.getElementById("club").style.display = "none"; 
   }
-  
   function showClub(clubIdNumber) {
     document.getElementById("club").style.display = "flex"; 
     let urlClub = "https://api.football-data.org/v2/teams/"+clubIdNumber+"/"
@@ -98,13 +84,46 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
         data.squad.forEach(element => {
           let place=1;
           htmlSquad += "<tr><td>"+element.name+"</td><td>"+element.role+"</td><td>"+element.position+"</td></tr>"
-          //htmlSquad += "<li>"+element.name+" " +element.role+" " +element.position+"</li>"
         });
         let temp3="<table><caption></caption><tr><th>Name</th><th>Role</th><th>Position</th></tr>"+htmlSquad+"</table>";
         document.getElementById("club").innerHTML = temp3;
         console.log(htmlSquad)
     });
    
+  }
+  function hideTodayMatches() {
+    document.getElementById("todayMatches").style.display = "none"; 
+  }
+  function showTodayMatches() {
+    document.getElementById("todayMatches").style.display = "flex"; 
+
+    let urlTodayMatches = "https://api.football-data.org/v2/matches/"
+
+    fetch(urlTodayMatches, {
+      method: "GET",
+      headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"} 
+    })
+    .then(response => response.json())
+    .then(function (data){
+      console.log(data)
+      let htmlTodayMatches ="";
+
+    data.matches.forEach(element => {
+      //where element.id ==="30307"
+      //if(element.competition.id=="2002"){
+        console.log("test")
+        htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td><td>"+element.score.winner+"</td></tr>"
+   //   }
+    //htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td></tr>";
+    });
+
+      /*data.match.forEach(element => {
+         htmlTodayMatches += console.log("test") //"<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td></tr>";
+      });*/
+      let temp4="<table><caption></caption><tr><th>Home Team</th><th>Away Team</th><th>Winner</th></tr>"+htmlTodayMatches+"</table>";
+        document.getElementById("todayMatches").innerHTML = temp4;
+    });
+
   }
 
 

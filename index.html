@@ -13,10 +13,11 @@
   <body>
     <div class="wrapper">
       <div class="header">
-        <button id="showTeams" onclick="hideFirstView(), showTeams(), hideStandings(), hideClub()">Teams</button>
-        <button id="hideTeams" onclick="hideFirstView(), hideTeams(), showStandings(), hideClub()">Standings</button>
+        <button id="showTeams" onclick="hideFirstView(), showTeams(), hideStandings(), hideClub(), hideTodayMatches()">Teams</button>
+        <button id="hideTeams" onclick="hideFirstView(), hideTeams(), showStandings(), hideClub(), hideTodayMatches()">Standings</button>
+        <button id="hideTeams" onclick="hideFirstView(), hideTeams(), hideStandings(), hideClub(), showTodayMatches()">Today' matches</button>
       </div>
-
+      <div id="todayMatches" style="display :none"></div>
       <div id="club" style="display :none"></div>
       <div id="teams" style="display :none"></div>
       <div id="standings" style="display :none"></div>
