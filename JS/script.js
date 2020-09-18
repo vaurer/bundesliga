@@ -110,10 +110,10 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
 
     data.matches.forEach(element => {
       //where element.id ==="30307"
-      //if(element.competition.id=="2002"){
+      if(element.competition.id=="2002"){
         console.log("test")
         htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td><td>"+element.score.winner+"</td></tr>"
-   //   }
+     }
     //htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td></tr>";
     });
 
