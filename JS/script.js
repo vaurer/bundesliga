@@ -86,7 +86,14 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
     
         data.squad.forEach(element => {
           let place=1;
-          htmlSquad += "<tr><td>"+element.name+"</td><td>"+element.role+"</td><td>"+element.position+"</td></tr>"
+          let pos="";
+          if(element.position ==null){
+          pos =element.role
+          } else {
+            pos=element.position
+          }
+          htmlSquad += "<tr><td>"+element.name+"</td><td>"+element.role+"</td><td>"+pos+"</td></tr>"
+          pos="";
         });
         let temp3="<table><caption></caption><tr><th>Name</th><th>Role</th><th>Position</th></tr>"+htmlSquad+"</table>";
         document.getElementById("club").innerHTML = temp3;
@@ -115,15 +122,17 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
       if(element.competition.id=="2002"){
         let winner="";
         if(element.score.winner ==null){
-          winner ="'not finished'"
+          var time = new Date(element.utcDate);
+          winner = time;
+          console.log(winner)
         } else {
           winner=element.score.winner
         }
-        htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td><td>"+element.score.winner+"</td></tr>"
+        htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td><td><h6>"+winner+"</h6></td></tr>"
         winner="";
      }
     });
-    
+
       let temp4="<table><caption></caption><tr><th>Home Team</th><th>Away Team</th><th>Winner</th></tr>"+htmlTodayMatches+"</table>";
         document.getElementById("todayMatches").innerHTML = temp4;
     });
