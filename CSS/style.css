@@ -5,7 +5,7 @@ html {
     padding: 25px;
     display: flex;
     justify-content: left;
-    background-color: #eee;
+    background-color: silver;
 }
 
 button {
@@ -13,7 +13,7 @@ button {
     margin: 10px;
     border-style: none;
     background-color: black;
-    color: white;
+    color: silver;
     width: 150px;
 
 }
@@ -50,6 +50,7 @@ table {
   table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    border-style: none;
   }
   th, td {
     padding: 10px;
@@ -58,20 +59,24 @@ table {
     font-weight: bold;
     font-size: x-large;
     font-style: italic;
+    border-style: none;
   }
 tr:nth-child(even) {
   background-color: #eee;
+  border-style: none;
 }
 tr:nth-child(odd) {
- background-color: #fff;
+ background-color: silver;
+ border-style: none;
 }
 th {
   background-color: black;
   color: white;
+  border-style: none;
 }
 
 ol li { 
-  border-right: 1px  solid black; 
+  /*border-right: 1px  solid black; */
   padding: 0 .5em; 
   padding: 10px;
   text-justify: auto;
@@ -79,7 +84,21 @@ ol li {
   font-weight: bold;
   font-size: x-large;
   font-style: italic;
-  border-right:
 }
 
-  ol li:last-child { border: 0; }
+ /* ol li:last-child { border: 0; }*/
+
+ #map {
+  height: 400px;  /* The height is 400 pixels */
+  width: 100%;  /* The width is the width of the web page */
+ }
+
+ .info {
+  padding: 1rem;
+  margin: 0;
+}
+
+.info.error {
+  color: #fff;
+  background: #dc3545;
+}

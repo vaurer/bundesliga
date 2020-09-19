@@ -69,6 +69,9 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
   function hideClub() {
     document.getElementById("club").style.display = "none"; 
   }
+  function hideMap() {
+    document.getElementById("mapView").style.display = "none"; 
+  }
   function showClub(clubIdNumber) {
     document.getElementById("club").style.display = "flex"; 
     let urlClub = "https://api.football-data.org/v2/teams/"+clubIdNumber+"/"
@@ -109,17 +112,18 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
       let htmlTodayMatches ="";
 
     data.matches.forEach(element => {
-      //where element.id ==="30307"
       if(element.competition.id=="2002"){
-        console.log("test")
+        let winner="";
+        if(element.score.winner ==null){
+          winner ="'not finished'"
+        } else {
+          winner=element.score.winner
+        }
         htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td><td>"+element.score.winner+"</td></tr>"
+        winner="";
      }
-    //htmlTodayMatches += "<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td></tr>";
     });
-
-      /*data.match.forEach(element => {
-         htmlTodayMatches += console.log("test") //"<tr><td>"+element.homeTeam.name+"</td><td>"+element.awayTeam.name+"</td></tr>";
-      });*/
+    
       let temp4="<table><caption></caption><tr><th>Home Team</th><th>Away Team</th><th>Winner</th></tr>"+htmlTodayMatches+"</table>";
         document.getElementById("todayMatches").innerHTML = temp4;
     });
@@ -133,4 +137,36 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
 
 function append(parent, el) {
   return parent.appendChild(el);
+}
+
+function init() {
+  const initialPosition = { lat: 45.763673, lng: 15.928536 };
+
+  const map = new google.maps.Map(document.getElementById('map'), {
+    center: initialPosition,
+    zoom: 15
+  });
+
+  const marker = new google.maps.Marker({ map, position: initialPosition });
+
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        console.log(`Lat: ${position.coords.latitude} Lng: ${position.coords.longitude}`);
+
+        marker.setPosition({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+
+        map.panTo({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
+      },
+      err => alert(`Error (${err.code}): ${getPositionErrorMessage(err.code)}`)
+    );
+  } else {
+    alert('Geolocation is not supported by your browser.');
+  }
 }

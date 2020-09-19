@@ -13,9 +13,9 @@
   <body>
     <div class="wrapper">
       <div class="header">
-        <button id="showTeams" onclick="hideFirstView(), showTeams(), hideStandings(), hideClub(), hideTodayMatches()">Teams</button>
-        <button id="hideTeams" onclick="hideFirstView(), hideTeams(), showStandings(), hideClub(), hideTodayMatches()">Standings</button>
-        <button id="hideTeams" onclick="hideFirstView(), hideTeams(), hideStandings(), hideClub(), showTodayMatches()">Today' matches</button>
+        <button id="showTeams" onclick="hideFirstView(), hideMap(), showTeams(), hideStandings(), hideClub(), hideTodayMatches()">Teams</button>
+        <button id="hideTeams" onclick="hideFirstView(), hideMap(), hideTeams(), showStandings(), hideClub(), hideTodayMatches()">Standings</button>
+        <button id="hideTeams" onclick="hideFirstView(), hideMap(), hideTeams(), hideStandings(), hideClub(), showTodayMatches()">Today' matches</button>
       </div>
       <div id="todayMatches" style="display :none"></div>
       <div id="club" style="display :none"></div>
@@ -24,9 +24,14 @@
         <div class="container" id="fistView" style="display :flex">
           <div class="row">
             <div class="col-12">
-              <h4>Willkommen auf die deutsche Bundesliga Übersichtseite</h4></div>
+            </body>
           </div>
       </div>
     </div>
+    <main class="container" id="mapView" style="display :flex">
+      <div><h1>Im here ;)</h1></div>
+      <div id="map" class="map"></div>
+    </main>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_RQ7j_M0lmi73YtQfs9mVFEXBHIu0cWk&callback=init"></script>
   </body>
 </html>
