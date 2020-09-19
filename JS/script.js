@@ -1,5 +1,6 @@
 let urlTeams = "https://api.football-data.org/v2/competitions/2002/teams";
 let urlStandings = "https://api.football-data.org/v2/competitions/2002/standings?standingType=TOTAL";
+// https://api.football-data.org/v2/players/349/
 let clubLinks =[];
 
 
@@ -15,20 +16,14 @@ fetch(urlTeams, {
 
     data.teams.forEach(element => {
       clubLinks.push(element.id)
-       temp += "<tr><td><img src='"+element.crestUrl+"' onclick='hideTeams(), showClub("+element.id+")' style='width:80px'/></a></td><td>"+element.name+"</td></tr>"
+       temp += "<tr><td><img id='img' src='"+element.crestUrl+"' onclick='hideTeams(), showClub("+element.id+")' style='width:80px'/></td><td onclick='hideTeams(), showClub("+element.id+")'>"+element.name+"</td></tr>"
     });
     let html="<table><caption></caption><tr><th>Crest</th><th>Club</th>"+temp+"</table>";
     document.getElementById("teams").innerHTML = html;
     console.log(html)
 for(a=0;a<clubLinks.length;a++){
-  console.log(clubLinks[a])
 }
 });
-
-
-
-
-
 
 fetch(urlStandings, {
   method: "GET",
@@ -88,11 +83,11 @@ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}
           let place=1;
           let pos="";
           if(element.position ==null){
-          pos =element.role
+          pos = " ";
           } else {
             pos=element.position
           }
-          htmlSquad += "<tr><td>"+element.name+"</td><td>"+element.role+"</td><td>"+pos+"</td></tr>"
+          htmlSquad += "<tr><td onclick='hideClub(), showPlayer("+element.id+")'>"+element.name+"</td><td>"+element.role+"</td><td>"+pos+"</td></tr>"
           pos="";
         });
         let temp3="<table><caption></caption><tr><th>Name</th><th>Role</th><th>Position</th></tr>"+htmlSquad+"</table>";
@@ -178,4 +173,45 @@ function init() {
   } else {
     alert('Geolocation is not supported by your browser.');
   }
+}
+function hidePlayer() {
+  document.getElementById("player").style.display = "none"; 
+}
+function showPlayer(x) {
+  document.getElementById("player").style.display = "flex"; 
+  let tempPlayer="";
+  let id = ""
+  let name = ""
+  let firstName = ""
+  let lastName = ""
+  let dateOfBirth = ""
+  let countryOfBirth = ""
+  let nationality = ""
+  let position = ""
+
+  let urlPlayer = "https://api.football-data.org/v2/players/"+x+"/";
+  console.log(urlPlayer)
+
+  fetch(urlPlayer, {
+    method: "GET",
+ headers : { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf"}  
+  })
+
+  .then(response => response.json())
+  .then(function (data){
+     id = "<li> ID: "+data.id+"</li>"
+     name = "<li> Name: "+data.name+"</li>"
+     firstName = "<li> First name: "+data.firstName+"</li>"
+     lastName = "<li> Last name: "+data.lastName+"</li>"
+     dateOfBirth = "<li> Date of Birth: "+data.dateOfBirth+"</li>"
+     countryOfBirth = "<li> Country of Birth: "+data.countryOfBirth+"</li>"
+     nationality = "<li> Nationality: "+data.nationality+"</li>"
+     position = "<li> Position: "+data.position+"</li>"
+    tempPlayer="<ol>"+id+name+firstName+lastName+dateOfBirth+countryOfBirth+nationality+position+"</ol>"
+
+    console.log(tempPlayer)
+    document.getElementById("player").innerHTML = tempPlayer;
+
+
+  });
 }

@@ -13,14 +13,15 @@
   <body>
     <div class="wrapper">
       <div class="header">
-        <button id="showTeams" onclick="hideFirstView(), hideMap(), showTeams(), hideStandings(), hideClub(), hideTodayMatches()">Teams</button>
-        <button id="hideTeams" onclick="hideFirstView(), hideMap(), hideTeams(), showStandings(), hideClub(), hideTodayMatches()">Standings</button>
-        <button id="hideTeams" onclick="hideFirstView(), hideMap(), hideTeams(), hideStandings(), hideClub(), showTodayMatches()">Today' matches</button>
+        <button id="showTeams" onclick="hideFirstView(), hideMap(), showTeams(), hideStandings(), hideClub(), hideTodayMatches(), hidePlayer()">Teams</button>
+        <button id="showStandings" onclick="hideFirstView(), hideMap(), hideTeams(), showStandings(), hideClub(), hideTodayMatches(), hidePlayer()">Standings</button>
+        <button id="hideTeams" onclick="hideFirstView(), hideMap(), hideTeams(), hideStandings(), hideClub(), showTodayMatches(), hidePlayer()">Today' matches</button>
       </div>
       <div id="todayMatches" style="display :none"></div>
       <div id="club" style="display :none"></div>
       <div id="teams" style="display :none"></div>
       <div id="standings" style="display :none"></div>
+      <div id="player" style="display :none"></div>
         <div class="container" id="fistView" style="display :flex">
           <div class="row">
             <div class="col-12">

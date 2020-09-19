@@ -61,10 +61,12 @@ table {
     font-style: italic;
     border-style: none;
   }
+  
 tr:nth-child(even) {
   background-color: #eee;
   border-style: none;
 }
+
 tr:nth-child(odd) {
  background-color: silver;
  border-style: none;
@@ -102,3 +104,5 @@ ol li {
   color: #fff;
   background: #dc3545;
 }
+
+tr:hover {background-color:#f3ffae;}
