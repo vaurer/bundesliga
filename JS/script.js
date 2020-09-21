@@ -59,32 +59,7 @@ function showLigaStandings(LigaNumber) {
     .then(function (data) {
       let leaguePositionLI = "";
       data.standings[0].table.forEach((element) => {
-        leaguePositionLI +=
-          "<tr onclick=showClub(" +
-          element.team.id +
-          ")><th scope='row'>" +
-          element.position +
-          "</th><td><img src='" +
-          element.team.crestUrl +
-          "' style='width:80px'/></td><td>" +
-          element.team.name +
-          "</td><td>" +
-          element.playedGames +
-          "</td><td>" +
-          element.won +
-          "</td><td>" +
-          element.draw +
-          "</td><td>" +
-          element.lost +
-          "</td><td>" +
-          element.points +
-          "</td><td>" +
-          element.goalsFor +
-          " : " +
-          element.goalsAgainst +
-          "</td><td>" +
-          element.goalDifference +
-          "</td></tr>";
+        leaguePositionLI +="<tr onclick=showClubFirstPage("+element.team.id +")><th scope='row'>" +"</th><td><img src='"+element.team.crestUrl +"' style='width:80px'/></td><td>"+element.team.name +"</td><td>" +element.playedGames +"</td><td>" +element.won +"</td><td>" +element.draw +"</td><td>" +element.lost +"</td><td>" +element.points +"</td><td>" +element.goalsFor +" : " +element.goalsAgainst +"</td><td>" +element.goalDifference +"</td></tr>";
       });
       let leaguesStandings =
         "<table class='table table-striped table-dark'><thead><tr> <th scope='col'>#</th><th scope='col#>Last</th></tr></thead><tbody><tr><th scope='row'></th><th scope='row'>Club<th scope='row'>Games</th><th scope='row'>Won</th><th scope='row'>Draw</th><th scope='row'>Lost</th><th scope='row'>Points</th><th scope='row'>Goals</th><th scope='row'>Diff</th></th><td>" +
@@ -121,16 +96,7 @@ function showClub(clubIdNumber) {
         } else {
           pos = element.position;
         }
-        htmlSquad +=
-          "<tr onclick='showPlayer(" +
-          element.id +
-          ")'><td>" +
-          element.name +
-          "</td><td>" +
-          element.role +
-          "</td><td>" +
-          pos +
-          "</td></tr>";
+        htmlSquad +="<tr onclick='showPlayer(" + element.id +")'><td>" +element.name +"</td><td>" +element.role +"</td><td>" +pos +"</td></tr>";
         pos = "";
       });
       let firstdiv =
@@ -168,20 +134,8 @@ function showPlayer(playerID) {
       let nationality = data.nationality;
       let position = data.position;
 
-      let playerData =
-        "<tr><td>" +
-        name +
-        "</td></tr><tr><td>" +
-        position +
-        "</td></tr><tr><td>" +
-        nationality +
-        "</td></tr><tr><td>" +
-        dateOfBirth +
-        "</td></tr>";
-      let playerTable =
-        "<table class='table table-striped table-dark'><thead><tr> <th scope='col'>Person info</th><th scope='col#>Last</th></tr></thead><tbody><tr><th scope='row'></th><td>" +
-        playerData +
-        "</td></tr></tbody></table>";
+      let playerData ="<tr><td>" +name +"</td></tr><tr><td>" + position +"</td></tr><tr><td>" +nationality +"</td></tr><tr><td>" +dateOfBirth +"</td></tr>";
+      let playerTable = "<table class='table table-striped table-dark'><thead><tr> <th scope='col'>Person info</th><th scope='col#>Last</th></tr></thead><tbody><tr><th scope='row'></th><td>" +playerData +"</td></tr></tbody></table>";
       document.getElementById("competitions").innerHTML = playerTable;
     });
 }
@@ -204,4 +158,25 @@ function showTodaysMatches() {
 
       document.getElementById("competitions").innerHTML = htmlTodaysMatches;
     });
+}
+
+function showClubFirstPage(clubIdNumber){
+  var source = document.getElementById("matchesClub").innerHTML;
+  var template = Handlebars.compile(source);
+
+  let urlclubFirstPage="https://api.football-data.org/v2/teams/"+clubIdNumber+"/matches";
+
+  fetch(urlclubFirstPage, {
+    method: "GET",
+    headers: { "X-Auth-Token": "c4a83924354d413f9017805ac1cbb5bf" },
+  })
+  .then((response) => response.json())
+  .then(function(data){
+    console.log(data);
+
+
+    let htmlTodaysMatches = template(data);
+
+    document.getElementById("competitions").innerHTML = htmlTodaysMatches;
+  });
 }
