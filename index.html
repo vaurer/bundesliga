@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js" defer></script>
     <script src="/JS/script.js" defer></script>
     <link rel="stylesheet" href="/CSS/style.css">
 </head>
@@ -24,7 +25,7 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" onclick="showTodayMatches()">Todays Matches</a>
+              <a class="nav-link" href="#" onclick="showTodaysMatches()">Todays Matches</a>
             </li>
             <!-- <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,6 +48,32 @@
           </form> -->
         </div>
       </nav>
-      <div id="competitions"></div>
+      <div id="competitions" class="responsive"></div>
 </body>
 </html>
+
+
+<script id="matchesTemplate" type="text/x-handlebars-template">
+  <table class='table table-striped table-dark'>
+    <thead>
+      <tr>
+        <th scope="col">HOME</th>
+        <th scope="col">GUEST</th>
+        <th scope="col">RESULT</th>
+      </tr>
+    </thead>
+  <tbody>
+    {{#each matches}}
+      <tr>
+      <td id="home">{{homeTeam.name}}</td>
+      <td id="away">{{awayTeam.name}}</td>
+      {{#if score.winner}}
+      <td id="fullTime"><h6>{{score.fullTime.homeTeam}} : {{score.fullTime.awayTeam}}</h6></td>
+      {{else}}
+      <td id="fullTime"><h6>not finished</h6></td>
+      {{/if}}
+      </tr>
+    {{/each}}
+  </tbody>
+  </table>
+</script>
